@@ -11,7 +11,7 @@ Snake::Snake()
 	for (auto &p : snakeBody)
 	{
 		pos(p.raw, p.column);
-		cout << "ก๖";
+		cout << "ยกรถ";
 	}
 }
 
@@ -19,11 +19,20 @@ void Snake::createFood()
 {
 	int x = uraw(e) * 2 + 4;
 	int y = ucol(e) + 2;
+
+	for (auto &l:snakeBody)
+	{
+		if (l.raw==x&&l.column==y)
+		{
+			return createFood();
+		}
+	}
+
 	Point p(x, y);
 	food = p;
 
 	pos(x,y);
-	cout << "ก๕";
+	cout << "โ–ก";
 }
 
 void Snake::keyBoardControl(bool &isOver)
@@ -111,7 +120,7 @@ void Snake::Move()
 		for (auto &l:snakeBody)
 		{
 			pos(l.raw, l.column);
-			cout << "ก๖";
+			cout << "ยกรถ";
 		}
 
 		++score;
@@ -122,7 +131,7 @@ void Snake::Move()
 		for (auto &l : snakeBody)
 		{
 			pos(l.raw, l.column);
-			cout << "ก๖";
+			cout << "ยกรถ";
 		}
 
 		auto end = snakeBody.end(); --end;
